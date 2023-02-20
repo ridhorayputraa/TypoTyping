@@ -3,6 +3,7 @@ import React from "react";
 import { faker } from "@faker-js/faker";
 import RestartButton from "./components/RestartButton";
 import Result from "./components/Result";
+import UserTyping from "./components/UserTyping";
 
 const words = faker.random.words(10);
 
@@ -10,16 +11,20 @@ function App() {
   return (
     <>
       <CountDownTImer timeLeft="30" />
-      <GenerateWords words={words} />
+      <div className="relative max-w-xl mt-3 text-3xl leading-relaxed break-all">
+        {/* Breask-all => font-break to same */}
+        <UserTyping className="absolute inset-0" userInput={words} />
+        <GenerateWords words={words} />
+      </div>
       <RestartButton
         className={"mx-auto mt-10 text-slate-500"}
         onRestart={() => null}
       />
       <Result
-       accuracyPercentage={10} 
-      errors={5}
-      total={100}
-      className="mt-10"
+        accuracyPercentage={10}
+        errors={5}
+        total={100}
+        className="mt-10"
       />
     </>
   );
@@ -27,7 +32,7 @@ function App() {
 
 // words adalah type words yang berbentuk string
 const GenerateWords = ({ words }: { words: string }) => {
-  return <div className="text-4xl text-slate-500 text-center">{words}</div>;
+  return <div className="text-slate-500">{words}</div>;
 };
 
 const CountDownTImer = ({ timeLeft }: { timeLeft: string }) => {
