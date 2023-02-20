@@ -11,11 +11,10 @@ function App() {
   return (
     <>
       <CountDownTImer timeLeft="30" />
-      <div className="relative max-w-xl mt-3 text-3xl leading-relaxed break-all">
-        {/* Breask-all => font-break to same */}
+      <WordsContainer>
         <UserTyping className="absolute inset-0" userInput={words} />
         <GenerateWords words={words} />
-      </div>
+      </WordsContainer>
       <RestartButton
         className={"mx-auto mt-10 text-slate-500"}
         onRestart={() => null}
@@ -29,6 +28,16 @@ function App() {
     </>
   );
 }
+
+// wrapper
+const WordsContainer = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="relative max-w-xl mt-3 text-3xl leading-relaxed break-all">
+      {/* Breask-all => font-break to same */}
+      {children}
+    </div>
+  );
+};
 
 // words adalah type words yang berbentuk string
 const GenerateWords = ({ words }: { words: string }) => {
