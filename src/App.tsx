@@ -9,11 +9,11 @@ import useEngine from "./hooks/useEngine";
 // const words = faker.random.words(10);
 
 function App() {
-  const { state, words } = useEngine();
+  const { state, words, timeLeft } = useEngine();
 
   return (
     <>
-      <CountDownTImer timeLeft="30" />
+      <CountDownTImer timeLeft={timeLeft} />
       <WordsContainer>
         <UserTyping className="absolute inset-0" userInput={words} />
         <GenerateWords words={words} />
@@ -47,7 +47,7 @@ const GenerateWords = ({ words }: { words: string }) => {
   return <div className="text-slate-500">{words}</div>;
 };
 
-const CountDownTImer = ({ timeLeft }: { timeLeft: string }) => {
+const CountDownTImer = ({ timeLeft }: { timeLeft: number }) => {
   return <h2 className="text-primary-400 font-medium">Time: {timeLeft}</h2>;
 };
 
