@@ -67,7 +67,18 @@ function useEngine() {
     sumErrors,
   ]);
 
-  return { state, words, timeLeft, typed };
+  // Restart fn
+  const restart = useCallback(() => {
+    console.log("restarting....");
+    resetCountdown();
+    resetTotalTyped();
+    setState("start");
+    setErrors(0);
+    updateWords();
+    clearTyped();
+  }, [clearTyped, updateWords, resetCountdown, resetTotalTyped]);
+
+  return { state, words, timeLeft, typed, errors, totalTyped, restart };
 }
 
 export default useEngine;
