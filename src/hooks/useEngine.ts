@@ -23,6 +23,9 @@ function useEngine() {
   const [errors, setErrors] = useState(0);
 
   const isStaring = state === "start" && cursor > 0;
+  const areWrodsFinished = cursor === words.length;
+  // areWrodsFinished => tell we are in the last charcacter
+  //  in the current generated words
 
   const sumErrors = useCallback(() => {
     const wordsReached = words.substring(0, cursor);
@@ -47,6 +50,22 @@ function useEngine() {
       sumErrors();
     }
   }, [timeLeft, sumErrors]);
+
+  // When the current words are all filled up,
+  // generate and saw another set of words
+  useEffect(() => {
+    sumErrors();
+    updateWords();
+    clearTyped();
+  }, [
+    cursor,
+    words,
+    clearTyped,
+    typed,
+    areWrodsFinished,
+    updateWords,
+    sumErrors,
+  ]);
 
   return { state, words, timeLeft, typed };
 }
