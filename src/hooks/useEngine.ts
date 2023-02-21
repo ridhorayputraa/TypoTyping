@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import useCountdownTimer from "./useCountDown";
 import useTypings from "./useTypings";
 import useWords from "./useWords";
+import { countErrors } from "../utils/helpers";
 
 export type stateData = "start" | "run" | "finish";
 
@@ -22,7 +23,7 @@ function useEngine() {
   // Count errors
   const [errors, setErrors] = useState(0);
 
-  const isStaring = state === "start" && cursor > 0;
+  const isStarting = state === "start" && cursor > 0;
   const areWrodsFinished = cursor === words.length;
   // areWrodsFinished => tell we are in the last charcacter
   //  in the current generated words
@@ -30,22 +31,22 @@ function useEngine() {
   const sumErrors = useCallback(() => {
     const wordsReached = words.substring(0, cursor);
     setErrors((prevErrors) => prevErrors + countErrors(typed, wordsReached));
-  }, [typed, words, timeLeft, typed]);
+  }, [words, timeLeft, typed]);
 
   // as soon the user starts typing the first letter, we start
   useEffect(() => {
-    if (isStaring) {
+    if (isStarting) {
       setState("run");
       startCountDown();
     }
-  }, [isStaring, startCountDown, cursor]);
+  }, [isStarting, startCountDown, cursor]);
 
   // behaviour when time is zero
   // when the time is up, we've finished
   useEffect(() => {
     if (!timeLeft) {
       console.log("time is up.....");
-      console.log("thanks to run this app");
+      console.log("tanks to run this app");
       setState("finish");
       sumErrors();
     }
@@ -54,9 +55,12 @@ function useEngine() {
   // When the current words are all filled up,
   // generate and saw another set of words
   useEffect(() => {
-    sumErrors();
-    updateWords();
-    clearTyped();
+    // jika sudah finish
+    if (areWrodsFinished) {
+      sumErrors();
+      updateWords();
+      clearTyped();
+    }
   }, [
     cursor,
     words,
