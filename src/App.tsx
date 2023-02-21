@@ -15,7 +15,9 @@ function App() {
     <>
       <CountDownTImer timeLeft={timeLeft} />
       <WordsContainer>
-        <UserTyping className="absolute inset-0" userInput={typed} />
+        <UserTyping className="absolute inset-0"
+        words={words}
+        userInput={typed} />
         <GenerateWords words={words} />
       </WordsContainer>
       <RestartButton

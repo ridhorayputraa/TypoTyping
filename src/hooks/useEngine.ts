@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import useCountdownTimer from "./useCountDown";
 import useTypings from "./useTypings";
 import useWords from "./useWords";
