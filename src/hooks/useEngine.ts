@@ -37,9 +37,17 @@ function useEngine() {
     }
   }, [isStaring, startCountDown, cursor]);
 
+  // behaviour when time is zero
+  // when the time is up, we've finished
+  useEffect(() => {
+    if (!timeLeft) {
+      console.log("time is up.....");
+      console.log("thanks to run this app");
+      setState("finish");
+      sumErrors();
+    }
+  }, [timeLeft, sumErrors]);
 
-
-  
   return { state, words, timeLeft, typed };
 }
 
