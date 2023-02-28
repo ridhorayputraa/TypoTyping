@@ -65,7 +65,9 @@ const GenerateWords = ({ words }: { words: string }) => {
 };
 
 const CountDownTImer = ({ timeLeft }: { timeLeft: number }) => {
-  return <h2 className="text-primary-400 font-medium">Time: {timeLeft}</h2>;
+  return (
+    <h2 className="text-primary-400 text-2xl   font-medium">{timeLeft}</h2>
+  );
 };
 
 export default App;
