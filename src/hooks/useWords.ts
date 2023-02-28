@@ -1,4 +1,4 @@
-import { faker, Faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker/locale/en_US";
 import { useState, useCallback } from "react";
 
 const generateWords = (count: number) => {
@@ -7,7 +7,7 @@ const generateWords = (count: number) => {
 
 const useWords = (count: number) => {
   const [words, setWords] = useState<string>(generateWords(count));
- 
+
   const updateWords = useCallback(() => {
     setWords(generateWords(count));
   }, [count]);

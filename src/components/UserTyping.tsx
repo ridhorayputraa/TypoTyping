@@ -1,4 +1,3 @@
-import React from "react";
 import Caret from "./Caret";
 import cn from "classnames";
 

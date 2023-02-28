@@ -6,7 +6,7 @@ import { countErrors } from "../utils/helpers";
 
 export type stateData = "start" | "run" | "finish";
 
-const NUMBERS_OF_WORDS = 12;
+const NUMBERS_OF_WORDS = 15;
 const COUNTDOWN_SECONDS = 30;
 
 function useEngine() {
@@ -15,6 +15,8 @@ function useEngine() {
   const { timeLeft, startCountDown, resetCountdown } = useCountdownTimer(
     COUNTDOWN_SECONDS
   );
+
+  
 
   const { typed, cursor, clearTyped, resetTotalTyped, totalTyped } = useTypings(
     state !== "finish"

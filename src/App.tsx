@@ -1,6 +1,6 @@
 import React from "react";
+import Header from "./components/Header";
 
-import { faker } from "@faker-js/faker";
 import RestartButton from "./components/RestartButton";
 import Result from "./components/Result";
 import UserTyping from "./components/UserTyping";
@@ -22,26 +22,29 @@ function App() {
 
   return (
     <>
-      <CountDownTImer timeLeft={timeLeft} />
-      <WordsContainer>
-        <UserTyping
-          className="absolute inset-0"
-          words={words}
-          userInput={typed}
+      <Header />
+      <div className="container">
+        <CountDownTImer timeLeft={timeLeft} />
+        <WordsContainer>
+          <UserTyping
+            className="absolute inset-0"
+            words={words}
+            userInput={typed}
+          />
+          <GenerateWords words={words} />
+        </WordsContainer>
+        <RestartButton
+          className={"mx-auto mt-10 text-slate-500"}
+          onRestart={restart}
         />
-        <GenerateWords words={words} />
-      </WordsContainer>
-      <RestartButton
-        className={"mx-auto mt-10 text-slate-500"}
-        onRestart={restart}
-      />
-      <Result
-      state={state}
-        accuracyPercentage={calculateAccuracyPercentage(errors, totalTyped)}
-        errors={errors}
-        total={totalTyped}
-        className="mt-10"
-      />
+        <Result
+          state={state}
+          accuracyPercentage={calculateAccuracyPercentage(errors, totalTyped)}
+          errors={errors}
+          total={totalTyped}
+          className="mt-10"
+        />
+      </div>
     </>
   );
 }
