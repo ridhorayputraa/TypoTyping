@@ -45,7 +45,7 @@ const Character = ({
         // koondisi ketika salah
         "text-red-500": !isCorrect && !isWhiteSpace,
         // kondiisi ketika benar
-        "text-primary-400": isCorrect && !isWhiteSpace,
+        "text-gray-200": isCorrect && !isWhiteSpace,
         // konidisi ketika salah dan ada spasi
         "bg-red-500/50": !isCorrect && isWhiteSpace,
       })}

@@ -5,11 +5,11 @@
 /* BaseLine */
 @layer base {
   .container {
-    @apply min-h-screen  flex flex-col justify-center items-center font-mono
+    @apply py-32 flex flex-col justify-center items-center font-mono
     tracking-wider px-4;
   }
   body {
-    @apply min-h-screen bg-slate-800 grid place-items-center font-mono
+    @apply h-full  bg-slate-800 grid place-items-center font-mono
     tracking-wider px-4;
   }
 }
